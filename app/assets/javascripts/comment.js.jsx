@@ -18,6 +18,15 @@ var Comment = React.createClass({
 });
 
 var CommentBox = React.createClass({
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json'
+    });
+  },
   render: function() {
     return(
       <div className="commentBox">
@@ -56,7 +65,7 @@ var CommentForm = React.createClass({
 
 $(document).ready(function() {
   React.render(
-    <CommentBox data={data}/>,
+    <CommentBox url="comments.json"/>,
       document.getElementById("content")
   );
 });

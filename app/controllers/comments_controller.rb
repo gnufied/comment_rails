@@ -2,9 +2,13 @@
 class CommentsController < ApplicationController
   respond_to :html, :json
   def index
-    comment_array = Comment.all.map do |comment|
-      { author: comment.user.fullname, text: comment.text }
-    end
-    respond_with(comment_array)
+    comments = Comment.all
+    respond_with(comments)
+  end
+
+  def create
+    p params
+    comment = Comment.create!(author: params[:author], text: params[:text])
+    respond_with(comment)
   end
 end

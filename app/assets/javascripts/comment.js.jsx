@@ -34,13 +34,11 @@ var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function (comment) {
       return(
-        <Comment author={comment.author}> {comment.text} </Comment>
+        <Comment author={comment.author}>{comment.text}</Comment>
       );
     });
     return(
-      <div id="commentList">
-        {commentNodes}
-      </div>
+      <div id="commentList">{commentNodes}</div>
     );
   }
 });
@@ -55,7 +53,10 @@ var CommentForm = React.createClass({
   }
 });
 
-React.render(
-  <CommentBox url="http://localhost:9292/comments"/>,
-    document.getElementById("content")
-);
+
+$(document).ready(function() {
+  React.render(
+    <CommentBox data={data}/>,
+      document.getElementById("content")
+  );
+});
